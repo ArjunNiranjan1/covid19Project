@@ -6,7 +6,7 @@ import seaborn as sns
 save_to = '/application/static/images'
 
 def read():
-    clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-full&sslrootcert=/root.crt'
+    clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-full&sslrootcert=/application/root.crt'
     engine = create_engine(clouddb)
     query = 'SELECT date, dailycases FROM cases;'
     cases = pd.read_sql_query(query,engine)
