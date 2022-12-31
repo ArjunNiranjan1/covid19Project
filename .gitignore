@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Security certificate for cloud DB
-.crt
+*.crt
