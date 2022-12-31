@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import application.casesImage
 
 app = Flask(__name__)
 
