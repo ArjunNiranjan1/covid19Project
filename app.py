@@ -4,7 +4,7 @@ from app.casesImage import save_to, plot
 
 app = Flask(__name__)
 
-clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-full'
+clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=disable'
 
 try:
     engine = create_engine(clouddb)
