@@ -8,7 +8,7 @@ sns.set_theme()
 save_to = '/application/static/images'
 
 clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-full'
-engine = create_engine(clouddb)
+engine = create_engine(clouddb, connect_args={'ca': '/root.crt'})
 
 query = 'SELECT date, dailycases FROM cases;'
 cases = pd.read_sql_query(query,engine)
