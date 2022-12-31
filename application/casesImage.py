@@ -4,16 +4,18 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 save_to = '/application/static/images'
+ssl_args = {'ssl_ca': 'root.crt'}
 
-clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-full'
-engine = create_engine(clouddb)
-
-def plot():
-    sns.set_theme()
-    
+def read():
+    clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-full'
+    engine = create_engine(clouddb, connect_args = ssl_args)
     query = 'SELECT date, dailycases FROM cases;'
     cases = pd.read_sql_query(query,engine)
     cases = cases.fillna(0)
+    return cases
+
+def plot(cases):
+    sns.set_theme()
 
     plt.plot(cases["date"],cases["dailycases"],color='purple')
     plt.title("COVID-19 cases in England")
