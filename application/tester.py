@@ -7,14 +7,14 @@ import os
 
 save_to = '/app/application/static/images'
 
-load_dotenv()
+base = os.getcwd()
+load_dotenv(os.path.join(base,'.env'))
 
-
-user = os.getenv('DB_USER')
-pw = os.getenv('DB_PASSWORD')
+user = os.getenv("DB_USER")
+pw = os.getenv("DB_PASSWORD")
 
 def read():
-    path = os.getcwd() + '/root.crt'
+    path = base + '/root.crt'
     '''
     clouddb = f'cockroachdb://{user}:{pw}@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert={path}'
     engine = create_engine(clouddb)
