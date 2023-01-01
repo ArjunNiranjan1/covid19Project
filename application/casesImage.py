@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-save_to = '/application/static/images'
+save_to = '/app/application/static/images'
 user = 'Arjun'
 pw = 'ZTP0gR_dTDFPapT53EySTw'
 def read():
