@@ -2,7 +2,6 @@ from sqlalchemy import create_engine
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from boto.s3.connection import S3Connection
 import os
 
 save_to = '/app/application/static/images'
@@ -26,7 +25,7 @@ def read():
     cases = pd.read_sql_query(query,engine)
     cases = cases.fillna(0)
     '''
-    user = S3Connection(os.environ["DB_USER"], os.environ["DB_PASSWORD"])
+    user = [os.getenv('DB_USER'),os.getenv('DB_PASSWORD')]
     password = os.environ
     return user, password
 
