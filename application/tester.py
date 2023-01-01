@@ -23,7 +23,7 @@ def read():
     cases = pd.read_sql_query(query,engine)
     cases = cases.fillna(0)
     '''
-    cases = pw
+    cases = os.environ["COMPUTERNAME"]
     return cases, path
 
 def plot(cases):
