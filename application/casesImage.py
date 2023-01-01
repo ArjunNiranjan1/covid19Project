@@ -12,14 +12,14 @@ load_dotenv()
 
 user = os.getenv('DB_USER')
 pw = os.getenv('DB_PASSWORD')
-host = os.getenv('DB_HOST')
+#host = os.getenv('DB_HOST')
 #port = os.getenv('DB_PORT')
-database = os.getenv('DB_DATABASE')
+#database = os.getenv('DB_DATABASE')
 
 
 
 def read():
-    clouddb = f'cockroachdb://{user}:{pw}@{host}:26257/{database}?sslmode=verify-ca&sslrootcert=app/application/root.crt'
+    clouddb = f'cockroachdb://{user}:{pw}@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert=app/application/root.crt'
     engine = create_engine(clouddb)
     query = 'SELECT date, dailycases FROM cases;'
     cases = pd.read_sql_query(query,engine)
