@@ -2,13 +2,14 @@ from sqlalchemy import create_engine
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import os
 
 save_to = '/app/application/static/images'
 
 base = os.getcwd()
-load_dotenv(os.path.join(base,'.env'))
+#path = os.path.join(base,'.env')
+load_dotenv(find_dotenv())
 
 user = os.getenv("DB_USER")
 pw = os.getenv("DB_PASSWORD")
