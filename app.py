@@ -10,7 +10,7 @@ t1 = os.getcwd()
 #c = read()
 #plot()
 
-path = t1 + 'requirements.txt'
+path = t1 + '/requirements.txt'
 f = open(path, 'r')
 c = f.read()
 f.close()
