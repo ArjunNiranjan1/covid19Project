@@ -1,17 +1,17 @@
 from flask import Flask, render_template
-from application.casesImage import read, plot, save_to, t
+from application.casesImage import read, plot, save_to
 import os
 
 app = Flask(__name__)
 
-t0 = t
+t0 = save_to
 
 t1 = os.getcwd()
 #c = read()
 #plot()
 
 
-c = app.instance_path
+c = app.root_path
 
 
 @app.route('/')
