@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from application.casesImage import read, plot, save_to
-import covid19Project.root as cert
+import application.root as cert
 import os
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ t0 = round((9*8)/3,2)
 
 t1 = os.getcwd()
 #c = read()
-#plot() desktop/arjun/projects
+#plot()
 
 
 c = type(cert)
