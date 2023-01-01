@@ -2,16 +2,16 @@ from sqlalchemy import create_engine
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 import os
 
 save_to = '/app/application/static/images'
 
 base = os.getcwd()
-path = os.path.join(base,'/.env')
+load_dotenv(os.path.join(base,'.env'))
 
-user = dotenv_values(path)["DB_USER"]
-pw = dotenv_values(path)["DB_PASSWORD"]
+user = os.getenv("DB_USER")
+pw = os.getenv("DB_PASSWORD")
 
 def read():
     path = base + '/root.crt'
