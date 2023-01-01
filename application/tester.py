@@ -2,17 +2,20 @@ from sqlalchemy import create_engine
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from dotenv import load_dotenv
+from boto.s3.connection import S3Connection
 import os
 
 save_to = '/app/application/static/images'
 
+
 base = os.getcwd()
+'''
 path = os.path.join(base,'/.env')
 load_dotenv(path)
 
 user = os.getenv("DB_USER")
 pw = os.getenv("DB_PASSWORD")
+'''
 
 def read():
     path = base + '/root.crt'
@@ -23,9 +26,9 @@ def read():
     cases = pd.read_sql_query(query,engine)
     cases = cases.fillna(0)
     '''
-    cases = os.environ
-    path = pw
-    return cases, path
+    user = S3Connection(os.environ["DB_USER"], os.environ["DB_PASSWORD"])
+    password = os.environ
+    return user, password
 
 def plot(cases):
     sns.set_theme()
