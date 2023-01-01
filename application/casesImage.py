@@ -2,8 +2,13 @@ from sqlalchemy import create_engine
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 save_to = '/application/static/images'
+
+def test():
+    temp = os.getcwd()
+    return temp
 
 def read():
     clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert=/covid19Project/root.crt'
