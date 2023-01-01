@@ -9,7 +9,7 @@ c = read()
 
 @app.route('/')
 def home():
-    return render_template("landing.html", test = c[0], path = c[1])
+    return render_template("landing.html", path = len(c))
 
 if __name__ == '__main__':
     app.run()
