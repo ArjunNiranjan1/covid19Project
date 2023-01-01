@@ -14,12 +14,13 @@ user = os.getenv('DB_USER')
 pw = os.getenv('DB_PASSWORD')
 
 def read():
-    clouddb = f'cockroachdb://{user}:{pw}@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert=app/root.crt'
+    path = os.getcwd() + '/root.crt'
+    clouddb = f'cockroachdb://{user}:{pw}@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert={path}'
     engine = create_engine(clouddb)
     query = 'SELECT date, dailycases FROM cases;'
     cases = pd.read_sql_query(query,engine)
     cases = cases.fillna(0)
-    return cases
+    return cases, path
 
 def plot(cases):
     sns.set_theme()

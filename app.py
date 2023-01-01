@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from application.casesImage import read, plot
+from application.tester import read, plot
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ c = read()
 
 @app.route('/')
 def home():
-    return render_template("landing.html", test = len(c))
+    return render_template("landing.html", test = len(c[0]), path = c[1])
 
 if __name__ == '__main__':
     app.run()
