@@ -16,7 +16,7 @@ c = app.instance_path
 
 @app.route('/')
 def home():
-    return render_template("landing.html", t0 = t0, t1 = t1, t2 = len(c))
+    return render_template("landing.html", t0 = t0, t1 = t1, t2 = c)
 
 if __name__ == '__main__':
     app.run()
