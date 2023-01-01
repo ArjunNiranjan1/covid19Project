@@ -1,18 +1,17 @@
 from flask import Flask, render_template
 from application.casesImage import read, plot, save_to
-import application.root as cert
 import os
 
 app = Flask(__name__)
 
-t0 = round((9*8)/3,2)
+t0 = save_to
 
 t1 = os.getcwd()
 #c = read()
 #plot()
 
 
-c = type(cert)
+c = app.instance_path
 
 
 @app.route('/')
