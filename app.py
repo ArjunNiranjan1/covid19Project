@@ -7,15 +7,14 @@ app = Flask(__name__)
 t0 = round((9*8)/3,2)
 
 t1 = os.getcwd()
-c = [2,3]
 #c = read()
 #plot() desktop/arjun/projects
 
-'''
-f = open('/covid19Project/root.crt', 'r')
+
+f = open('covid19Project/root.crt', 'r')
 c = f.read()
 f.close()
-'''
+
 
 @app.route('/')
 def home():
