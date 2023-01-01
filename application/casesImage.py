@@ -2,16 +2,24 @@ from sqlalchemy import create_engine
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from dotenv import load_dotenv
 import os
 
 save_to = '/app/application/static/images'
-user = 'Arjun'
-pw = 'ZTP0gR_dTDFPapT53EySTw'
+
+load_dotenv()
+
+
+user = os.getenv('DB_USER')
+pw = os.getenv('DB_PASSWORD')
+host = os.getenv('DB_HOST')
+port = os.getenv('DB_PORT')
+database = os.getenv('DB_DATABASE')
+
+
+
 def read():
-    user = 'Arjun'
-    pw = 'ZTP0gR_dTDFPapT53EySTw'
-    path = os.getcwd() + '/application/root.crt'
-    clouddb = f'cockroachdb://{user}:{pw}@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert={path}'
+    clouddb = f'cockroachdb://{user}:{pw}@{host}:{port}/{database}?sslmode=verify-ca&sslrootcert=app/application/root.crt'
     engine = create_engine(clouddb)
     query = 'SELECT date, dailycases FROM cases;'
     cases = pd.read_sql_query(query,engine)
