@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from application.casesImage import read, plot, save_to
+import covid19Project.root as cert
 import os
 
 app = Flask(__name__)
@@ -11,9 +12,7 @@ t1 = os.getcwd()
 #plot() desktop/arjun/projects
 
 
-f = open('covid19Project/root.crt', 'r')
-c = f.read()
-f.close()
+c = type(cert)
 
 
 @app.route('/')
