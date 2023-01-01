@@ -1,10 +1,10 @@
 from flask import Flask, render_template
-from application.casesImage import read, plot, save_to, test
+from application.casesImage import read, plot, save_to, t
 import os
 
 app = Flask(__name__)
 
-t0 = test()
+t0 = t
 
 t1 = os.getcwd()
 #c = read()

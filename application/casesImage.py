@@ -10,6 +10,8 @@ def test():
     temp = os.getcwd()
     return temp
 
+t = test()
+
 def read():
     clouddb = 'cockroachdb://Arjun:ZTP0gR_dTDFPapT53EySTw@chief-wallaby-3959.6zw.cockroachlabs.cloud:26257/covid19-project?sslmode=verify-ca&sslrootcert=/covid19Project/root.crt'
     engine = create_engine(clouddb)
