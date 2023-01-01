@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-save_to = '/app/application/static/images'
 base = os.getcwd()
+save_to = os.path.join(base, '/application/static/images')
 
 user = os.getenv('DB_USER')
 pw = os.getenv("DB_PASSWORD")
@@ -29,4 +29,4 @@ def plot(cases):
     plt.xlabel("Date")
     plt.ylabel("Cases")
     plt.xticks(cases["date"][list(range(0,len(cases),int(round(len(cases)/5,0))))])
-    plt.savefig(save_to + 'cases.png')
+    plt.savefig(os.path.join(save_to,'/cases.png'))

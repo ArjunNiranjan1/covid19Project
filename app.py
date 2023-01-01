@@ -4,7 +4,7 @@ from application.tester import read, plot
 app = Flask(__name__)
 
 c = read()
-#plot()
+plot(c)
 
 
 @app.route('/')
