@@ -1,8 +1,13 @@
 from sqlalchemy import create_engine
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+import io
+import base64
 
 base = os.getcwd()
 cert = base + '/root.crt'
@@ -26,10 +31,15 @@ def get_df(con):
 #Generate plots
 def plot(df):
     sns.set_theme()
+    cases = io.BytesIO()
     
     plt.plot(df["date"],df["dailycases"],color='purple')
     plt.title("COVID-19 cases in England")
     plt.xlabel("Date")
     plt.ylabel("Cases")
     plt.xticks(df["date"][list(range(0,len(df),int(round(len(df)/5,0))))])
-    plt.savefig(save_to + '/cases.png')
+    plt.savefig(cases, format='png')
+    
+    return base64.encodebytes(cases.getvalue()).decode('utf-8')
+    
+    
