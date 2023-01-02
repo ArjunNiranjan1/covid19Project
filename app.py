@@ -7,11 +7,10 @@ app = Flask(__name__)
 def home():
     return render_template("landing.html")
 
-@app.route('/cases')
-def cases():
-    df = get_df(connect)
-    out = plot(df)
-    return out
+@app.route('fig')
+def page2():
+    data = get_df(connect())
+    return f"<img src='data:image/png;base64,{data}'/>"
 
 if __name__ == '__main__':
     app.run()

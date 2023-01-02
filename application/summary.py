@@ -1,12 +1,12 @@
 from sqlalchemy import create_engine
 import pandas as pd
-import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 import seaborn as sns
 import os
-from flask import send_file
-import io
+from io import BytesIO
 import base64
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
+sns.set_theme(style="darkgrid")
 
 base = os.getcwd()
 cert = base + '/root.crt'
@@ -27,22 +27,14 @@ def get_df(con):
     df = pd.read_sql_query(q, con)
     return df
 
-#Generate plots
 def plot(df):
-    fig, ax = plt.subplots(figsize=(6,6))
-    ax = sns.set_style(style="darkgrid")
+    fig = Figure()
+    ax = fig.subplots()
     
     ax.plot(df["date"],df["dailycases"],color='purple')
-    ax.set_title("COVID-19 cases in England")
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Cases")
-    ax.set_xticks(df["date"][list(range(0,len(df),int(round(len(df)/5,0))))])
     
-    canvas = FigureCanvas(fig)
-    img = io.BytesIO()
-    fig.savefig(img)
-    img.seek(0)
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    out = base64.b64encode(buf.getbuffer()).decode("ascii")
     
-    return send_file(img, mimetype='img/png')
-    
-    
+    return out
