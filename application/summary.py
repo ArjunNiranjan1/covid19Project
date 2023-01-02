@@ -1,13 +1,12 @@
 from sqlalchemy import create_engine
 import pandas as pd
-import matplotlib
-matplotlib.use('Agg')
-
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+from Flask import send_file
 import io
 import base64
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 base = os.getcwd()
 cert = base + '/root.crt'
@@ -30,16 +29,20 @@ def get_df(con):
 
 #Generate plots
 def plot(df):
-    sns.set_theme()
-    cases = io.BytesIO()
+    fig, ax = plt.subplots(figsize=(6,6))
+    ax = sns.set_style(style="darkgrid")
     
-    plt.plot(df["date"],df["dailycases"],color='purple')
-    plt.title("COVID-19 cases in England")
-    plt.xlabel("Date")
-    plt.ylabel("Cases")
-    plt.xticks(df["date"][list(range(0,len(df),int(round(len(df)/5,0))))])
-    plt.savefig(cases, format='png')
+    ax.plot(df["date"],df["dailycases"],color='purple')
+    ax.set_title("COVID-19 cases in England")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Cases")
+    ax.set_xticks(df["date"][list(range(0,len(df),int(round(len(df)/5,0))))])
     
-    return base64.encodebytes(cases.getvalue()).decode('utf-8')
+    canvas = FigureCanvas(fig)
+    img = io.BytesIO()
+    fig.savefig(img)
+    img.seek(0)
+    
+    return send_file(img, mimetype='img/png')
     
     
