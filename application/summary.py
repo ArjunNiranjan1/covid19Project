@@ -27,7 +27,7 @@ def get_df(con):
     df = pd.read_sql_query(q, con)
     return df
 
-def plot(df):
+def cases(df):
     fig = Figure()
     ax = fig.subplots()
     
