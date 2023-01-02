@@ -23,8 +23,9 @@ def connect():
 
 #Query date, daily cases, daily deaths
 def get_df(con):
-    q = 'SELECT cases.date, cases.dailycases, deaths.dailydeaths FROM cases INNER JOIN deaths ON cases.date=deaths.date;'
+    q = 'SELECT cases.date, cases.dailycases, deaths.dailydeaths FROM cases FULL JOIN deaths ON cases.date=deaths.date;'
     df = pd.read_sql_query(q, con)
+    df = df.fillna(0)
     return df
 
 def cases(df):
