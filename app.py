@@ -1,15 +1,13 @@
 from flask import Flask, render_template
-from application.tester import read, plot
+from application.summary import connect, get_df, plot
 
 app = Flask(__name__)
 
-c = read()
-#plot(c)
-
+plot(get_df(connect()))
 
 @app.route('/')
 def home():
-    return render_template("landing.html", path = len(c))
+    return render_template("landing.html")
 
 if __name__ == '__main__':
     app.run()
