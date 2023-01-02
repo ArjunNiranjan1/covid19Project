@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
-from Flask import send_file
+from flask import send_file
 import io
 import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
