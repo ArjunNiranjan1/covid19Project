@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from application.summary import connect, get_df, plot
+from application.summary import connect, get_df, plot, save_to
 
 app = Flask(__name__)
 
