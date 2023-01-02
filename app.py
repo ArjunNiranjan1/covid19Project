@@ -7,7 +7,7 @@ plot(get_df(connect()))
 
 @app.route('/')
 def home():
-    return render_template("landing.html")
+    return render_template("landing.html", save_to = save_to)
 
 if __name__ == '__main__':
     app.run()
