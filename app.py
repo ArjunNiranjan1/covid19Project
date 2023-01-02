@@ -10,7 +10,8 @@ def home():
 @app.route('/fig')
 def page2():
     data = get_df(connect())
-    return f"<img src='data:image/png;base64,{data}'/>"
+    out = plot(data)
+    return f"<img src='data:image/png;base64,{out}'/>"
 
 if __name__ == '__main__':
     app.run()
