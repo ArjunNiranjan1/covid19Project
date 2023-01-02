@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return render_template("landing.html")
 
-@app.route('fig')
+@app.route('/fig')
 def page2():
     data = get_df(connect())
     return f"<img src='data:image/png;base64,{data}'/>"
