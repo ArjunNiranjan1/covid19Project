@@ -32,9 +32,9 @@ def cases(df):
     ax = fig.subplots()
     
     ax.plot(df["date"],df["dailycases"],color='purple')
-    ax.set_title("COVID-19 cases in England")
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Cases")
+    ax.set_title("COVID-19 cases in England",loc="left",weight="bold")
+    ax.set_xlabel("Date",weight="bold")
+    ax.set_ylabel("Cases",weight="bold")
     ax.set_xticks(df["date"][list(range(0,len(df),int(round(len(df)/5,0))))])
 
     buf = BytesIO()
