@@ -88,7 +88,6 @@ def full_hist(df):
     ax.set_title("Distribution of daily death counts",loc="left",weight="bold")
     ax.set_xlabel("Death count",weight="bold")
     ax.set_ylabel("Frequency",weight="bold")
-    ax.invert_xaxis()
     
     buf = BytesIO()
     fig.savefig(buf, format='png')
