@@ -37,7 +37,8 @@ def cases(df):
     ax.set_xlabel("Date",weight="bold")
     ax.set_ylabel("Cases",weight="bold")
     ax.set_xticks(df["date"][list(range(0,len(df),int(round(len(df)/5,0))))])
-
+    ax.invert_xaxis()
+    
     buf = BytesIO()
     fig.savefig(buf, format='png')
     out = base64.b64encode(buf.getbuffer()).decode("ascii")
@@ -52,8 +53,9 @@ def deaths(df):
     ax.set_title("Deaths",loc="left",weight="bold")
     ax.set_xlabel("Date",weight="bold")
     ax.set_ylabel("Death Count",weight="bold")
-    #ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
-    
+    ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
+    ax.invert_xaxis()
+
     buf = BytesIO()
     fig.savefig(buf, format='png')
     out = base64.b64encode(buf.getbuffer()).decode('ascii')
