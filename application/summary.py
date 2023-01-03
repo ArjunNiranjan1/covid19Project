@@ -61,3 +61,27 @@ def deaths(df):
     out = base64.b64encode(buf.getbuffer()).decode('ascii')
     
     return out
+
+def mortality(df):
+    fig = Figure()
+    ax = fig.subplots()
+    
+    ax.plot(df["date"],df["dailydeaths"]/df["dailycases"],label="Death Rate",color='red')
+    ax.set_ylim(0,1)
+    ax.legend()
+    ax.set_title("Mortality over time",loc="left",weight="bold")
+    ax.set_xlabel("Date",weight="bold")
+    ax.set_ylabel("Mortality",weight="bold")
+    ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
+
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    out = base64.b64encode(buf.getbuffer()).decode('ascii')
+    
+    return out
+
+def hist1(df):
+    return None
+
+def hist2(df):
+    return None
