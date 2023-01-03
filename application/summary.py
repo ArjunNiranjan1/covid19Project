@@ -101,6 +101,7 @@ def split_hist(df):
     
     ax.hist(df["dailydeaths"][500:],color="red",alpha=0.5,label="First 523 days")
     ax.hist(df["dailydeaths"][:500],color="red",alpha=1,label="Recent 500 days")
+    ax.set_ylim(0,700)
     ax.set_title("Distribution of daily death counts,\nsplit 500 days ago",loc="left",weight="bold")
     ax.set_xlabel("Death count",weight="bold")
     ax.set_ylabel("Frequency",weight="bold")
