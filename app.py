@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from application.summary import connect, get_df, cases, deaths, mortality
+from application.summary import connect, get_df, cases, deaths, mortality, full_hist, split_hist
 
 app = Flask(__name__)
 
@@ -11,10 +11,14 @@ d = deaths(summary_data)
 deaths_time_series = f'data:image/png;base64,{d}'
 m = mortality(summary_data)
 mort_plot = f'data:image/png;base64,{m}'
+f = full_hist(summary_data)
+full_plot = f'data:image/png;base64,{f}'
+s = split_hist(summary_data)
+split_plot = f'data:image/png;base64,{s}'
 
 @app.route('/')
 def home():
-    return render_template("landing.html", cases_time_series = cases_time_series, deaths_time_series = deaths_time_series, mort_plot = mort_plot)
+    return render_template("landing.html", cases_time_series = cases_time_series, deaths_time_series = deaths_time_series, mort_plot = mort_plot, full_plot = full_plot, split_plot = split_plot)
 
 if __name__ == '__main__':
     app.run()

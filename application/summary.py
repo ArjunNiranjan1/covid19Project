@@ -66,13 +66,13 @@ def mortality(df):
     fig = Figure()
     ax = fig.subplots()
     
-    ax.plot(df["date"],df["dailydeaths"]/df["dailycases"],label="Death Rate",color='red')
+    ax.plot(df["date"],df["dailydeaths"]/df["dailycases"],color='red')
     ax.set_ylim(0,1)
-    ax.legend()
     ax.set_title("Mortality over time",loc="left",weight="bold")
     ax.set_xlabel("Date",weight="bold")
     ax.set_ylabel("Mortality",weight="bold")
     ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
+    ax.invert_xaxis()
 
     buf = BytesIO()
     fig.savefig(buf, format='png')
@@ -80,8 +80,35 @@ def mortality(df):
     
     return out
 
-def hist1(df):
-    return None
+def full_hist(df):
+    fig = Figure()
+    ax = fig.subplots()
+    
+    ax.hist(df["dailydeaths"],color="red")
+    ax.set_title("Distribution of daily death counts",loc="left",weight="bold")
+    ax.set_xlabel("Death count",weight="bold")
+    ax.set_ylabel("Frequency",weight="bold")
+    ax.invert_xaxis()
+    
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    out = base64.b64encode(buf.getbuffer()).decode('ascii')
+    
+    return out
 
-def hist2(df):
-    return None
+def split_hist(df):
+    fig = Figure()
+    ax = fig.subplots()
+    
+    ax.hist(df["dailydeaths"][500:],color="red",alpha=0.5,label="First 523 days")
+    ax.hist(df["dailydeaths"][:500],color="red",alpha=1,label="Recent 500 days")
+    ax.set_title("Distribution of daily death counts,\nsplit 500 days ago",loc="left",weight="bold")
+    ax.set_xlabel("Death count",weight="bold")
+    ax.set_ylabel("Frequency",weight="bold")
+    ax.legend()
+    
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    out = base64.b64encode(buf.getbuffer()).decode('ascii')
+    
+    return out
