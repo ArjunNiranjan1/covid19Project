@@ -3,20 +3,15 @@ from application.summary import connect, get_df, cases
 
 app = Flask(__name__)
 
+#Summary plots
+summary_data = get_df(connect())
+c = cases(summary_data)
+cases_time_series = f'data:image/png;base64,{c}'
+
 @app.route('/')
 def home():
-    data = get_df(connect())
-    c = cases(data)
-    plot = f'data:image/png;base64,{c}'
-    return render_template("landing.html", content = plot)
+    return render_template("landing.html", content = cases_time_series)
 
-'''
-@app.route('/fig')
-def page2():
-    data = get_df(connect())
-    out = plot(data)
-    return f"<img src='data:image/png;base64,{out}'/>"
-'''
 if __name__ == '__main__':
     app.run()
     
