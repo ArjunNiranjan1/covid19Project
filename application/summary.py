@@ -43,3 +43,19 @@ def cases(df):
     out = base64.b64encode(buf.getbuffer()).decode("ascii")
     
     return out
+
+def deaths(df):
+    fig = Figure()
+    ax = fig.subplots()
+    
+    ax.plot(df["date"],df["dailydeaths"],color='red')
+    ax.set_title("Deaths",loc="left",weight="bold")
+    ax.set_xlabel("Date",weight="bold")
+    ax.set_ylabel("Death Count",weight="bold")
+    ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
+    
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    out = base64.b64encode(buf.getbuffer()).decode('ascii')
+    
+    return out
