@@ -52,7 +52,7 @@ def deaths(df):
     ax.set_title("Deaths",loc="left",weight="bold")
     ax.set_xlabel("Date",weight="bold")
     ax.set_ylabel("Death Count",weight="bold")
-    ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
+    #ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
     
     buf = BytesIO()
     fig.savefig(buf, format='png')
