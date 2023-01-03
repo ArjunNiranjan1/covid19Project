@@ -112,3 +112,27 @@ def split_hist(df):
     out = base64.b64encode(buf.getbuffer()).decode('ascii')
     
     return out
+
+#Summary plots
+#Summary data
+summary_data = get_df(connect())
+
+#Cases time series and path string for html
+c = cases(summary_data)
+cases_time_series = f'data:image/png;base64,{cases(summary_data)}'
+
+#Deaths time series and path string for html
+d = deaths(summary_data)
+deaths_time_series = f'data:image/png;base64,{d}'
+
+#Mortality time series and path string for html
+m = mortality(summary_data)
+mort_plot = f'data:image/png;base64,{m}'
+
+#Histogram of daily death count (full)
+f = full_hist(summary_data)
+full_plot = f'data:image/png;base64,{f}'
+
+#Histograms of daily death counts (split)
+s = split_hist(summary_data)
+split_plot = f'data:image/png;base64,{s}'
