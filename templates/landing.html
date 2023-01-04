@@ -20,7 +20,7 @@
 				<img src = {{ deaths_time_series }} alt="Deaths image unavailable" width="600" height="400">
 			</div>
 			<div width: 35%>
-				<p>Deaths here are defined as a death of an individual who received a positive COVID-19 within 28 days of death. We have more confidence in the quality of this data because it is harder to miss a death than an asymptomatic case. The day with the most deaths was {{ data_dict["dayOfMaxDeaths"] }}. Half of all COVID-19 related deaths to date had occurred by 22/01/2022.</p>
+				<p>Deaths here are defined as a death of an individual who received a positive COVID-19 within 28 days of death. We have more confidence in the quality of this data because it is harder to miss a death than an asymptomatic case. The day with the most deaths was {{ data_dict["dayOfMaxDeaths"].values[0] }}. Half of all COVID-19 related deaths to date had occurred by 22/01/2022.</p>
 			</div>
 			</div>
 			<div>
