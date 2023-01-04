@@ -139,6 +139,6 @@ split_plot = f'data:image/png;base64,{s}'
 
 data_dict = {}
 data_dict["dayOfMaxDeaths"] = summary_data["date"][summary_data["dailydeaths"]==max(summary_data["dailydeaths"])]
-data_dict["fullMortality"] = np.mean(summary_data["dailydeaths"]/summary_data["dailycases"])
-data_dict["earlyMortality"] = np.mean(summary_data["dailydeaths"][:200]/summary_data["dailycases"][:200])
-data_dict["lateMortality"] = np.mean(summary_data["dailydeaths"][200:]/summary_data["dailycases"][200:])
+data_dict["fullMortality"] = round(np.mean(summary_data["dailydeaths"]/summary_data["dailycases"]),2)
+data_dict["earlyMortality"] = round(np.mean(summary_data["dailydeaths"][:200]/summary_data["dailycases"][:200]),2)
+data_dict["lateMortality"] = round(np.mean(summary_data["dailydeaths"][200:]/summary_data["dailycases"][200:]),2)
