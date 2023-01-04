@@ -10,7 +10,6 @@ sns.set_theme(style="darkgrid")
 
 base = os.getcwd()
 cert = base + '/root.crt'
-save_to = base + '/application/static/images'
 
 user = os.getenv('DB_USER')
 pw = os.getenv("DB_PASSWORD")
