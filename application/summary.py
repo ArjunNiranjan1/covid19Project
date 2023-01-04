@@ -5,6 +5,7 @@ import seaborn as sns
 import os
 from io import BytesIO
 import base64
+import numpy as np
 
 sns.set_theme(style="darkgrid")
 
@@ -135,3 +136,9 @@ full_plot = f'data:image/png;base64,{f}'
 #Histograms of daily death counts (split)
 s = split_hist(summary_data)
 split_plot = f'data:image/png;base64,{s}'
+
+data_dict = {}
+data_dict["dayOfMaxDeaths"] = summary_data["date"][summary_data["dailydeaths"]==max(summary_data["dailydeaths"])]
+data_dict["fullMortality"] = np.mean(summary_data["dailydeaths"]/summary_data["dailycases"])
+data_dict["earlyMortality"] = np.mean(summary_data["dailydeaths"][:200]/summary_data["dailycases"][:200])
+data_dict["lateMortality"] = np.mean(summary_data["dailydeaths"][200:]/summary_data["dailycases"][200:])
