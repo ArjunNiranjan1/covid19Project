@@ -28,7 +28,7 @@
 				<img src = {{ mort_plot }} alt="Mortality image unavailable" width="600" height="400">
 			</div>
 			<div width: 35%>
-				<p>Here, a day’s mortality is defined as the day’s daily deaths divided by the day’s daily cases. Since early reported cases are likely to be an underestimate of actual cases, the high early mortality is probably an overestimate. The average mortality to date is {{ data_dict["fullMortality"] }}. However, if we split the data at 200 days in we see an early mortality of {{ data_dict["earlyMortality"] }}, and a later mortality of just {{ data_dict["lateMortality"] }}. It is unclear how much of the high early mortality can be attributed to daily case underestimation, and how much is due to real causes. The value {{ data_dict["lateMortality"] }} can be taken as a reasonable mortality estimate.</p>
+				<p>Here, a day’s mortality is defined as the day’s daily deaths divided by the day’s daily cases. Since early reported cases are likely to be an underestimate of actual cases, the high early mortality is probably an overestimate. The average mortality to date is {{ data_dict["fullMortality"] }}. However, if we split the data at 200 days in we see an early mortality of {{ data_dict["earlyMortality"] }}, and a later mortality of just {{ data_dict["lateMortality"] }}. It is unclear how much of the high early mortality can be attributed to daily case underestimation, and how much is due to real causes. The value {{ data_dict["lateMortality"] }} with a 95% confidence interval of {{ data_dict["mortalityConfidence"] }}can be taken as a reasonable mortality estimate.</p>
 			</div>
 			</div>
 			<div>
