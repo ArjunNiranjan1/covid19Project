@@ -140,7 +140,7 @@ split_plot = f'data:image/png;base64,{s}'
 
 data_dict = {}
 data_dict["today"] = datetime.datetime.now().date().strftime("%d/%m/%y")
-data_dict["dataAge"] = (datetime.datetime.now().date() - summary_data["date"][0]).days
+data_dict["dataAge"] = (datetime.datetime.now().date() - datetime.datetime.strptime(summary_data["date"][0],'%d/%m/%Y').date()).days
 data_dict["dayOfMaxDeaths"] = summary_data["date"][summary_data["dailydeaths"]==max(summary_data["dailydeaths"])]
 data_dict["fullMortality"] = round(np.mean(summary_data["dailydeaths"]/summary_data["dailycases"]),2)
 data_dict["earlyMortality"] = round(np.mean(summary_data["dailydeaths"][800:]/summary_data["dailycases"][800:]),2)
