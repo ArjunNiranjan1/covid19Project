@@ -5,6 +5,7 @@ import seaborn as sns
 import os
 from io import BytesIO
 import base64
+import datetime
 import numpy as np
 
 sns.set_theme(style="darkgrid")
@@ -138,6 +139,8 @@ s = split_hist(summary_data)
 split_plot = f'data:image/png;base64,{s}'
 
 data_dict = {}
+data_dict["today"] = datetime.datetime.now().date().strftime("%d/%m/%y")
+data_dict["dataAge"] = (datetime.datetime.now().date() - summary_data["date"][0]).days
 data_dict["dayOfMaxDeaths"] = summary_data["date"][summary_data["dailydeaths"]==max(summary_data["dailydeaths"])]
 data_dict["fullMortality"] = round(np.mean(summary_data["dailydeaths"]/summary_data["dailycases"]),2)
 data_dict["earlyMortality"] = round(np.mean(summary_data["dailydeaths"][800:]/summary_data["dailycases"][800:]),2)
