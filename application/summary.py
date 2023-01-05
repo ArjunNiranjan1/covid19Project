@@ -117,27 +117,29 @@ def split_hist(df):
 #Summary plots
 #Summary data
 summary_data = get_df(connect())
+plot_dict = {}
 
 #Cases time series and path string for html
 c = cases(summary_data)
-cases_time_series = f'data:image/png;base64,{cases(summary_data)}'
+plot_dict["cases_time_series"] = f'data:image/png;base64,{cases(summary_data)}'
 
 #Deaths time series and path string for html
 d = deaths(summary_data)
-deaths_time_series = f'data:image/png;base64,{d}'
+plot_dict["deaths_time_series"] = f'data:image/png;base64,{d}'
 
 #Mortality time series and path string for html
 m = mortality(summary_data)
-mort_plot = f'data:image/png;base64,{m}'
+plot_dict["mort_plot"] = f'data:image/png;base64,{m}'
 
 #Histogram of daily death count (full)
 f = full_hist(summary_data)
-full_plot = f'data:image/png;base64,{f}'
+plot_dict["full_plot"] = f'data:image/png;base64,{f}'
 
 #Histograms of daily death counts (split)
 s = split_hist(summary_data)
-split_plot = f'data:image/png;base64,{s}'
+plot_dict["split_plot"] = f'data:image/png;base64,{s}'
 
+#Data for landing.html
 data_dict = {}
 data_dict["today"] = datetime.datetime.now().date().strftime("%d/%m/%y")
 data_dict["dataAge"] = (datetime.datetime.now().date() - datetime.datetime.strptime(summary_data["date"][0],'%d/%m/%Y').date()).days
