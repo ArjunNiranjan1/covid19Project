@@ -144,6 +144,7 @@ data_dict = {}
 data_dict["today"] = datetime.datetime.now().date().strftime("%d/%m/%y")
 data_dict["dataAge"] = (datetime.datetime.now().date() - datetime.datetime.strptime(summary_data["date"][0],'%d/%m/%Y').date()).days
 data_dict["dayOfMaxDeaths"] = summary_data["date"][summary_data["dailydeaths"]==max(summary_data["dailydeaths"])]
+
 data_dict["fullMortality"] = round(np.mean(summary_data["dailydeaths"]/summary_data["dailycases"]),2)
 data_dict["earlyMortality"] = round(np.mean(summary_data["dailydeaths"][800:]/summary_data["dailycases"][800:]),2)
 d = summary_data["dailydeaths"][:800]/summary_data["dailycases"][:800]
@@ -152,3 +153,17 @@ data_dict["lateMortality"] = round(m,2)
 l = round(m - 1.96 * np.sqrt(np.var(d)),2)
 u = round(m + 1.96 * np.sqrt(np.var(d)),2)
 data_dict["mortalityConfidence"] = (l,u)
+
+m = np.mean(summary_data["dailydeaths"])
+data_dict["avgDailyDeaths"] = round(m,2)
+l = round(m - 1.96 * np.sqrt(np.var(summary_data["dailydeaths"])),2)
+u = round(m + 1.96 * np.sqrt(np.var(summary_data["dailydeaths"])),2)
+data_dict["deathsConfidence"] = (l,u)
+data_dict["deathsSkew"] = round(summary_data["dailydeaths"].skew(),2)
+
+m = np.mean(summary_data["dailydeaths"][:500])
+data_dict["lateAvgDailyDeaths"] = round(m,2)
+l = round(m - 1.96 * np.sqrt(np.var(summary_data["dailydeaths"][:500])),2)
+u = round(m + 1.96 * np.sqrt(np.var(summary_data["dailydeaths"][:500])),2)
+data_dict["lateDeathsConfidence"] = (l,u)
+data_dict["lateDeathsSkew"] = round(summary_data["dailydeaths"][:500].skew(),2)

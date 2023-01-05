@@ -36,7 +36,7 @@
 				<img src = {{ plot_dict["full_plot"] }} alt="Mortality image unavailable" width="600" height="400">
 			</div>
 			<div width: 35%>
-				<p>Histogram of daily death counts</p>
+				<p>This histogram shows that there were few COVID-19 related deaths on most days over the past 3 years, with rare spikes. On average there were {{ data_dict[“avgDailyDeaths”] }} deaths each day with a 95% confidence interval of {{ data_dict[“deathsConfidence”] }}. However, this data is highly skewed, with a skewness of {{ data_dict[“deathsSkew”] }}. High (positive) skewness is worrying because it suggests we should expect more days with extremely high death counts than a more centred distribution. The earlier plot of death count shows that all the days with extremely high death counts were nearer the start of the pandemic. For this reason, the data will be split for further analysis.</p>
 			</div>
 			</div>
 			<div>
@@ -44,7 +44,7 @@
 				<img src = {{ plot_dict["split_plot"] }} alt="Mortality image unavailable" width="600" height="400">
 			</div>
 			<div width: 35%>
-				<p>Histograms of daily death counts, split 500 days ago.</p>
+				<p>Splitting the daily death data 500 days ago provides further insights. The early time period sees death counts with high variance and positive skewness, whereas the more recent data shows much more predictable death counts. The more recent data sees {{ data_dict["lateAvgDailyDeaths"] }} daily deaths on average, with a 95% confidence interval of {{ data_dict["lateDeathsConfidence"] }}, and only {{ data_dict["lateDeathsSkew"] }} skewness. This indicates that individual days with high COVID-19 related death counts are not likely to be seen in future in England.</p>
 			</div>
 			</div>
 		</div>
