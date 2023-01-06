@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return render_template("landing.html", data_dict = data_dict, plot_dict = plot_dict)
 
-@app.route('/features')
+@app.route('/features/')
 def features():
     return render_template('features.html')
 
