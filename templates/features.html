@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Features{% endblock %}
+
+{% block content}
+<div>
+	<h3>Features in Development</h3>
+	<ul>
+		<li>New page for "features in development"</li>
+		<li>Clean up landing page: layout, navbar, footer, favicon</li>
+		<li>Use Heroku Scheduler to automate daily redeployment</li>
+		<li>Add a JavaScript "Welcome" pop up, for traffic analytics. Send data to a new table in CockroachDB</li>
+		<li>Traffic analysis page</li>
+		<li>Page for a hypothesis test for effectiveness of vaccination on daily cases/deaths</li>
+		<li>Page on time series analysis testing for seasonal COVID</li>
+		<li>Serverless Python ETL tool using Google Cloud Functions to get up to date data as gov.uk publishes it</li>
+		<li>Automate web-scraping for data from other sources</li>
+		<li>Fully automate query update process. Currently, the database is queried every time the website is opened, which is inefficient. Queries should be re-run on database update</li>
+	</ul>
+</div>
+{% endblock %}
