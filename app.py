@@ -11,5 +11,13 @@ def home():
 def features():
     return render_template('features.html')
 
+@app.route('/vaccines/')
+def vaccines():
+    return render_template('vaccines.html')
+
+@app.route('/forecasting/')
+def forecasting():
+    return render_template('forecasting.html')
+
 if __name__ == '__main__':
     app.run()
