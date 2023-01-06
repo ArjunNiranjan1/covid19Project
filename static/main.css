@@ -1,5 +1,7 @@
 body {
 	background-color: white;
+	margin: 10px;
+	padding-top: 10px;
 }
 
 header {
@@ -9,6 +11,5 @@ header {
     left: 0;
     right: 0;
     height: 80px;
-    padding-bottom: 10px;
 }
 
