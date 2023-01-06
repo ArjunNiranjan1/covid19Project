@@ -2,15 +2,17 @@
 <html>
 <head>
 	<title>{% block title %} {% endblock %} - COVID-19 England</title>
-	<link rel="stylesheet" href="{{ url_for('static', filname='main.css')}}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
 </head>
 <body>
-	<nav>
-		<ul>
-			<li><a href={{ url_for('home') }}>Summary</a></li>
-			<li><a href={{ url_for('features') }}>Development</a></li>
-		</ul>
-	</nav>
+	<header>
+		<nav>
+			<ul>
+				<li><a href={{ url_for('home') }}>Summary</a></li>
+				<li><a href={{ url_for('features') }}>Development</a></li>
+			</ul>
+		</nav>
+	</header>
 	<hr>
 	<div class="content">
 		{% block content %}
