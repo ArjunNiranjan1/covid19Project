@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from application.summary import plot_dict, data_dict
-from application.vaccination import plots_vac
+from application.vaccination import plots_vac, data_vac
 
 app = Flask(__name__)
 
