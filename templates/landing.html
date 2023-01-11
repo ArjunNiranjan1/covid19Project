@@ -15,11 +15,11 @@
 		</div>
 		<hr>
 		<div class="row">
-			<div class="image">
-				<img src = {{ plot_dict["deaths_time_series"] }} alt="Deaths image unavailable" width="600" height="400">
-			</div>
 			<div class="description">
 				<p>Deaths here are defined as a death of an individual who received a positive COVID-19 within 28 days of death. We have more confidence in the quality of this data because it is harder to miss a death than an asymptomatic case. The day with the most deaths was {{ data_dict["dayOfMaxDeaths"].values[0] }}. Half of all COVID-19 related deaths to date had occurred by 22/01/2022.</p>
+			</div>
+			<div class="image">
+				<img src = {{ plot_dict["deaths_time_series"] }} alt="Deaths image unavailable" width="600" height="400">
 			</div>
 		</div>
 		<hr>
@@ -33,11 +33,11 @@
 		</div>
 		<hr>
 		<div class="row">
-			<div class="image">
-				<img src = {{ plot_dict["full_plot"] }} alt="Mortality image unavailable" width="600" height="400">
-			</div>
 			<div class="description">
 				<p>This histogram shows that there were few COVID-19 related deaths on most days over the past 3 years, with rare spikes. On average there were {{ data_dict["avgDailyDeaths"] }} deaths each day with a 95% confidence interval of {{ data_dict["deathsConfidence"] }}. However, this data is highly skewed, with a skewness of {{ data_dict["deathsSkew"] }}. High (positive) skewness is worrying because it suggests we should expect more days with extremely high death counts than a more centred distribution. The earlier plot of death count shows that all the days with extremely high death counts were nearer the start of the pandemic. For this reason, the data will be split for further analysis.</p>
+			</div>
+			<div class="image">
+				<img src = {{ plot_dict["full_plot"] }} alt="Mortality image unavailable" width="600" height="400">
 			</div>
 		</div>
 		<hr>
