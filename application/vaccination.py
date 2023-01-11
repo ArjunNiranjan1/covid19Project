@@ -63,6 +63,6 @@ plots_vac["timeSeries"] = f'data:image/png;base64,{t}'
 #hypothesis test
 vac_data["prop"] = vac_data["cumseconds"] / pop
 d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
-data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%Y-%m-%d').date()
+data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 #regression
 #outputs for app.py
