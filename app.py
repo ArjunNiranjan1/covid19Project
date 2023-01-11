@@ -18,7 +18,7 @@ def features():
 
 @app.route('/vaccines/')
 def vaccines():
-    return render_template('vaccines.html', plots = plots_vac)
+    return render_template('vaccines.html', plots = plots_vac, data=data_vac)
 
 @app.route('/forecasting/')
 def forecasting():

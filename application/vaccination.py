@@ -6,6 +6,7 @@ import seaborn as sns
 import os
 from io import BytesIO
 import base64
+import datetime
 
 #stuff
 sns.set_theme(style="darkgrid")
@@ -17,6 +18,8 @@ user = os.getenv('DB_USER')
 pw = os.getenv("DB_PASSWORD")
 
 plots_vac = {}
+data_vac = {}
+pop = 55_980_000
 
 #connect
 def connect():
@@ -58,7 +61,8 @@ t = time_series(vac_data)
 plots_vac["timeSeries"] = f'data:image/png;base64,{t}'
 
 #hypothesis test
-
+vac_data["prop"] = vac_data["cumseconds"] / pop
+d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
+data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%Y-%m-%d').date()
 #regression
-
 #outputs for app.py

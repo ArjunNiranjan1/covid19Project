@@ -3,12 +3,19 @@
 {% block content %}
 <div>
 	<div class="row">
-			<div class="image">
-				<img src = {{ plots["timeSeries"] }} alt="Time series image unavailable" width="600" height="400">
-			</div>
-			<div width: 35%>
-				<p>Vaccinations time series description</p>
-			</div>
+		<div class="image">
+			<img src = {{ plots["timeSeries"] }} alt="Time series image unavailable" width="600" height="400">
 		</div>
+		<div class="description" width: 35%>
+			<p>Vaccinations time series description</p>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="description">
+			<p>On the date {{ data["dateOfHalfVacc"]}}, half of the population of England were fully vaccinated.</p>
+		</div>
+	</div>
+	<hr>
 </div>
 {% endblock %}
