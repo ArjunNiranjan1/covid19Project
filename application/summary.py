@@ -121,7 +121,7 @@ plot_dict = {}
 
 #Cases time series and path string for html
 c = cases(summary_data)
-plot_dict["cases_time_series"] = f'data:image/png;base64,{cases(summary_data)}'
+plot_dict["cases_time_series"] = f'data:image/png;base64,{c}'
 
 #Deaths time series and path string for html
 d = deaths(summary_data)

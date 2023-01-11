@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from application.summary import plot_dict, data_dict
+from application.vaccination import plots_vac
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ def features():
 
 @app.route('/vaccines/')
 def vaccines():
-    return render_template('vaccines.html')
+    return render_template('vaccines.html', plots = plots_vac)
 
 @app.route('/forecasting/')
 def forecasting():
