@@ -37,3 +37,7 @@ div.row {
 div.row > div {
     flex: 50%;
 }
+
+div.description{
+    padding-top: 10px;
+}
