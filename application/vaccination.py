@@ -70,12 +70,19 @@ data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
 setA = vac_data[vac_data["date"] < d]
 setB = vac_data[vac_data["date"] > d]
 
-deathsA = round(np.mean(setA["dailydeaths"]),2)
-deathsB = round(np.mean(setB["dailydeaths"]),2)
+mA = round(np.mean(setA["dailydeaths"]),2)
+mB = round(np.mean(setB["dailydeaths"]),2)
+nA = len(setA)
+nB = len(setB)
+sA = round(np.sqrt(np.var(setA["dailydeaths"])),2)
+sB = round(np.sqrt(np.var(setB["dailydeaths"])),2)
 
+mDiff = mA - mB
+sP = ((nA -1)*sA**2 + (nB -1)*sB**2) / (nA + nB - 2)
+t = mDiff / (sP * np.sqrt(nA**-1 + nB**-1))
 #regression
 
 #outputs for app.py
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
-data_vac["test"] = [deathsA, deathsB]
+data_vac["test"] = [t, sP]
