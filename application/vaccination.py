@@ -63,16 +63,49 @@ t = time_series(vac_data)
 plots_vac["timeSeries"] = f'data:image/png;base64,{t}'
 vac_data["prop"] = vac_data["cumseconds"] / pop
 d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
-data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
-data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
 
 #hypothesis test
+date = datetime.date(2021, 4, 10)
+A = vac_data[vac_data["date"] < date]
+B = vac_data[vac_data["date"] > date]
 
+nA = len(A)
+nB = len(B)
 
+den = np.sqrt(np.var(A["dailydeaths"])/nA + np.var(B["dailydeaths"])/nB)
+t = (np.mean(A["dailydeaths"]) - np.mean(B["dailydeaths"])) / den
 
+df = nA + nB - 2
 
-#regression
+T = stats.t.ppf(1-0.025, df)
+
+#Plot for hypothesis test
+def hyp_plot(df):
+    fig = Figure()
+    ax = fig.subplots()
+    
+    ax.plot(df["date"],df["dailydeaths"],color='red')
+    ax.set_title("Deaths",loc="left",weight="bold")
+    ax.set_xlabel("Date",weight="bold")
+    ax.set_ylabel("Death Count",weight="bold")
+    ax.set_xticks(df["date"].iloc[[*list(range(0,len(df),int(round(len(df)/5,0)))),len(df)-1]])
+    ax.invert_xaxis()
+    
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    out = base64.b64encode(buf.getbuffer()).decode("ascii")
+    
+    return out
+
+h = hyp_plot(vac_data)
+plots_vac["deaths"] = f'data:image/png;base64,{h}'
 
 #outputs for app.py
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
-data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
+data_vac["propVaccSoFar"] = round(max(vac_data["prop"]),2)
+
+data_vac["dateOfSplit"] = date
+data_vac["cumVacAtSplit"] = round(data_vac["prop"][data_vac["date"]==date],2)
+data_vac["degreesOfFreedom"] = df
+data_vac["t"] = t
+data_vac["T"] = T
