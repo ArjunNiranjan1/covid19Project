@@ -78,11 +78,13 @@ sA = round(np.sqrt(np.var(setA["dailydeaths"])),2)
 sB = round(np.sqrt(np.var(setB["dailydeaths"])),2)
 
 mDiff = mA - mB
-sP = ((nA -1)*sA**2 + (nB -1)*sB**2) / (nA + nB - 2)
-t = mDiff / (sP * np.sqrt(nA**-1 + nB**-1))
+df = nA + nB - 2
+sP = ((nA -1)*sA**2 + (nB -1)*sB**2) / df
+t = round(mDiff / (sP * np.sqrt(nA**-1 + nB**-1)),2)
+
 #regression
 
 #outputs for app.py
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
-data_vac["test"] = [t, sP]
+data_vac["test"] = [mA, mB]
