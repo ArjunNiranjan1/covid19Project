@@ -64,5 +64,7 @@ plots_vac["timeSeries"] = f'data:image/png;base64,{t}'
 vac_data["prop"] = vac_data["cumseconds"] / pop
 d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
+data_vac["propVaccSoFar"] = max(vac_data["cumseconds"]) / pop
+data_vac["totalDoses"] = sum(vac_data["dailyfirsts"]) + sum(vac_data["dailyseconds"] + sum(vac_data["dailythirds"]))
 #regression
 #outputs for app.py

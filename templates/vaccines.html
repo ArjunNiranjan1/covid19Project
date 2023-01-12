@@ -7,13 +7,14 @@
 			<img src = {{ plots["timeSeries"] }} alt="Time series image unavailable" width="600" height="400">
 		</div>
 		<div class="description" width: 35%>
-			<p>Vaccinations time series description</p>
+			<p>This time series shows daily first, second and booster doses applied in England over time. So far {{ data["propVaccSoFar"] }} people have been fully vaccinated (2 doses) in England, and by {{ data["dateOfHalfVacc"] }}, half of the population of England were fully vaccinated against COVID-19. Overall, {{ data["totalDoses"] }} vaccine doses have been administered in England.</p>
 		</div>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="description">
-			<p>On the date {{ data["dateOfHalfVacc"]}}, half of the population of England were fully vaccinated.</p>
+			<h3>Has vaccination improved public health in England? - hypothesis testing</h3>
+			<p>As preliminary analysis of vaccine effectiveness, hypothesis testing can be used to identify significant differences in daily cases or death counts. To begin testing whether COVID-19 vaccinations have been effective in England, the data will be split into two time periods. This split will be made on {{ data["dateOfHalfVacc"] }}, when half the population became fully vaccinated. This date is chosen because even today, not everyone is vaccinated, so a reasonable time should be chosen where enough people have been vaccinated to show if there is an effect or not.</p>
 		</div>
 	</div>
 	<hr>
