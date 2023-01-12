@@ -7,6 +7,7 @@ import os
 from io import BytesIO
 import base64
 import datetime
+import numpy as np
 
 #stuff
 sns.set_theme(style="darkgrid")
@@ -65,6 +66,16 @@ vac_data["prop"] = vac_data["cumseconds"] / pop
 d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
-data_vac["totalDoses"] = f'{sum(vac_data["dailyfirsts"]) + sum(vac_data["dailyseconds"] + sum(vac_data["dailythirds"])):,}'
+
+setA = vac_data[vac_data["date"] < d]
+setB = vac_data[vac_data["date"] > d]
+
+deathsA = round(np.mean(setA["dailydeaths"]),2)
+deathsB = round(np.mean(setB["dailydeaths"]),2)
+
 #regression
+
 #outputs for app.py
+data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
+data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
+data_vac["test"] = [deathsA, deathsB]
