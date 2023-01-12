@@ -61,32 +61,18 @@ vac_data = get_df(connect())
 t = time_series(vac_data)
 
 plots_vac["timeSeries"] = f'data:image/png;base64,{t}'
-
-#hypothesis test
 vac_data["prop"] = vac_data["cumseconds"] / pop
 d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
 
-setA = vac_data[vac_data["date"] < d]
-setB = vac_data[vac_data["date"] > d]
+#hypothesis test
 
-mA = round(np.mean(setA["dailydeaths"]),2)
-mB = round(np.mean(setB["dailydeaths"]),2)
-nA = len(setA)
-nB = len(setB)
-sA = round(np.sqrt(np.var(setA["dailydeaths"])),2)
-sB = round(np.sqrt(np.var(setB["dailydeaths"])),2)
 
-mDiff = mA - mB
-df = nA + nB - 2
-sP = ((nA -1)*sA**2 + (nB -1)*sB**2) / df
-t = round(mDiff / (sP * np.sqrt(nA**-1 + nB**-1)),2)
-T = round(stats.t.ppf(1-0.025,df))
+
 
 #regression
 
 #outputs for app.py
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
-data_vac["test"] = [(t,T), (t > T)]
