@@ -66,8 +66,9 @@ d = vac_data["date"][vac_data["prop"] > 0.5].iloc[-1]
 
 #hypothesis test
 date = datetime.date(2021, 4, 10)
-A = vac_data[vac_data["date"] < date]
-B = vac_data[vac_data["date"] > date]
+
+A = vac_data[datetime.datetime.strptime(vac_data["date"],'%d/%m/%Y').date() < date]
+B = vac_data[datetime.datetime.strptime(vac_data["date"],'%d/%m/%Y').date() > date]
 
 nA = len(A)
 nB = len(B)
