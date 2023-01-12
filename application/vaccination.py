@@ -8,6 +8,7 @@ from io import BytesIO
 import base64
 import datetime
 import numpy as np
+from scipy import stats
 
 #stuff
 sns.set_theme(style="darkgrid")
@@ -81,10 +82,11 @@ mDiff = mA - mB
 df = nA + nB - 2
 sP = ((nA -1)*sA**2 + (nB -1)*sB**2) / df
 t = round(mDiff / (sP * np.sqrt(nA**-1 + nB**-1)),2)
+T = round(stats.t.ppf(1-0.025,df))
 
 #regression
 
 #outputs for app.py
 data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["cumseconds"]) / pop,2)
-data_vac["test"] = [mA, mB]
+data_vac["test"] = [(t,T), (t > T)]
