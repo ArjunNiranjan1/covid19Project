@@ -106,7 +106,7 @@ data_vac["dateOfHalfVacc"] = datetime.datetime.strptime(d,'%d/%m/%Y').date()
 data_vac["propVaccSoFar"] = round(max(vac_data["prop"]),2)
 
 data_vac["dateOfSplit"] = date
-data_vac["cumVacAtSplit"] = round(data_vac["prop"][data_vac["date"]==date],2)
+data_vac["cumVacAtSplit"] = round(vac_data["prop"][vac_data["date"]==date],2)
 data_vac["degreesOfFreedom"] = df
 data_vac["t"] = t
 data_vac["T"] = T
